@@ -114,18 +114,19 @@ public class OrderServiceImpl implements OrderService {
         stockLogDO.setStatus(2);
         stockLogDOMapper.updateByPrimaryKeySelective(stockLogDO);
 
-        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
-                @Override
-                public void afterCommit(){
-                    //异步更新库存
-                    boolean mqResult = itemService.asyncDecreaseStock(itemId,amount);
-//                    if(!mqResult){
-//                        itemService.increaseStock(itemId,amount);
-//                        throw new BusinessException(EmBusinessError.MQ_SEND_FAIL);
-//                    }
-                }
-
-        });
+        //下面删除
+//        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+//                @Override
+//                public void afterCommit(){
+//                    //异步更新库存
+//                    boolean mqResult = itemService.asyncDecreaseStock(itemId,amount);
+////                    if(!mqResult){
+////                        itemService.increaseStock(itemId,amount);
+////                        throw new BusinessException(EmBusinessError.MQ_SEND_FAIL);
+////                    }
+//                }
+//
+//        });
 
 
 
