@@ -76,7 +76,7 @@ public class MqProducer {
                 return LocalTransactionState.COMMIT_MESSAGE;
             }
 
-            //这步其实还要回退redis，increaseStock
+            //这步其实还要通过延时时消息解决
             @Override
             public LocalTransactionState checkLocalTransaction(MessageExt msg) {
                 //根据是否扣减库存成功，来判断要返回COMMIT,ROLLBACK还是继续UNKNOWN
